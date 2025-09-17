@@ -10,6 +10,7 @@ cecH3 = 37.70; // Spacing between bottom hole and bottom of front panel
 // EuroCard Sub Cage (IEC-60297-3-101)
 cecH1 = 132.55; // Sub rack height (considering clearances)
 cecH5 = 112.00; // Vertical aperture opening dimension
+cecH5prm = 106.50; // Vertical aperture opening dimension
 cecH6 = 122.50; // Vertical mounting hole dimension (front rails)
 cecH6prm = 117.00; // Vertical mounting hole dimension (backplane rails)
 cecH8 = 128.55; // Height of front panel pieces
@@ -63,6 +64,9 @@ cecPanelPlateHoleDia = 3.6; // mm
 
 // Hole for M2.5 machine screws.
 cecPCBMountHoleDia = 3.2; // mm
+
+// Hole for M2.5 machine screws.
+cecRailMountHoleDia = 3.2; // mm
 
 
 ///////////////////////////////////////////////////////
