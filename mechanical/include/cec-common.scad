@@ -40,9 +40,9 @@ cec_b = cecD3; // PCB depth
 cec_c = 6.98; // Ref hole set back from board edge (backplane edge)
 cec_d = 10.10; // Ref hole to edge of connector (and mating platform)
 cec_e = 2.60; // Height of mating connector platform from backplane
-cec_f = 0; // TBD - Bracket mount hole from front of PCB
-cec_g = 0; // TBD - Bracket mount hole from top/bottom of PCB
-cec_h = 0; // TBD - Ref hole from top of PCB
+//cec_f = 0; // TBD - Bracket mount hole from front of PCB
+//cec_g = 0; // TBD - Bracket mount hole from top/bottom of PCB
+//cec_h = 0; // TBD - Ref hole from top of PCB
 
 // D1 - Depth from rear of front plate to backplane PCB
 cecD1tol = cecClearance;
@@ -68,6 +68,14 @@ cecPCBMountHoleDia = 3.2; // mm
 // Hole for M2.5 machine screws.
 cecRailMountHoleDia = 3.2; // mm
 
+// The IDC right angle connector.
+cecIDCThickness = 6.0; // mm (Sullins)
+cecIDCSpacing = 2.54; // mm
+// Offset height of the lower row from the PCB
+// given that the edge of the connector is flush with
+// the component side of the PCB.  Assumes that the
+// two rows are symetrical.
+cecIDCOffset = halfOf(cecIDCThickness - cecIDCSpacing);
 
 ///////////////////////////////////////////////////////
 // Handy functions useful in context of symmetry.

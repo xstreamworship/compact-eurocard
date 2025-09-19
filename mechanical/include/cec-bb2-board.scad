@@ -28,10 +28,10 @@ cecPCBHoleFrontOffset = 10; // Columns from front of PCB.
 cecPCBHoleEdgeOffset = 3; // Rows from each side of PCB.
 
 
-function bb2Col2YCoord(col) = bb2MarginFR + (col -
-    1) * bb2HoleSpacing; // Offset from front of PCB.
-function bb2Row2ZCoord(row) = bb2MarginTB + (row -
-    1) * bb2HoleSpacing; // Offset from (top) side of PCB.
+function bb2Col2YCoord(col) = bb2MarginFR + ((col -
+    1) * bb2HoleSpacing); // Offset from front of PCB.
+function bb2Row2ZCoord(row) = bb2MarginTB + ((row -
+    1) * bb2HoleSpacing); // Offset from (top) side of PCB.
 
 // These are computed, but can be overriden for a custom
 // PCB based on a different format.

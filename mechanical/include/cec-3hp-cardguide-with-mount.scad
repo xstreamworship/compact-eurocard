@@ -34,7 +34,8 @@ module prism(l, w, h)
    );
 }
 
-module cecMounbtHole(xOffset=0)
+module cecMounbtHole(xOffset=0, yOffset=0, zOffset=0,
+    thickExt=0)
 {
     // CEC front panel plate has symetric holes.
     //   X --> At center of panel width
@@ -45,19 +46,21 @@ module cecMounbtHole(xOffset=0)
     // Note: Y and Z args are swapped because this
     //       is invoked in context of a 90deg rotate.
     translate([halfOf(cecWidth) - cecPCBOffset + xOffset,
-        0, -cecHoleExt])
+        zOffset, -cecHoleExt - yOffset])
 
     // Hole for M2.5 (or M3) machine screws.
-    cylinder(h=cecRailMountThickness + doubleOf(cecHoleExt),
+    cylinder(h=cecRailMountThickness + doubleOf(cecHoleExt) +
+        thickExt,
         d=cecRailMountHoleDia);
 
     echo("Hole placement X,Y,Z=",
         [halfOf(cecWidth) - cecPCBOffset + xOffset,
-        0, -cecHoleExt],
+        zOffset, -cecHoleExt - yOffset],
         cecRailMountHoleDia=cecRailMountHoleDia);
 }
 
-module cecRailMount(xOffset=0)
+module cecRailMount(xOffset=0, yOffset=0, zOffset=0,
+    zExt=0, thickExt=0)
 {
     // CEC card guide rail mount.
     // Placement is:
@@ -68,8 +71,8 @@ module cecRailMount(xOffset=0)
     //   Z --> offset to have the Z=0, X,Y plane
     //         slice through the centers of the holes.
     railMountPlacement = [-cecPCBOffset + xOffset,
-        -cecRailMountThickness,
-        -cecRailMountHoleMinOffset];
+        -cecRailMountThickness + yOffset - thickExt,
+        -cecRailMountHoleMinOffset + zOffset];
 
     // Sized X,Y,Z based on:
     //  X --> Width: 3HP (exact).
@@ -79,10 +82,10 @@ module cecRailMount(xOffset=0)
     //        plus the extension from the other
     //        side of the holes.
     railMountSize = [cecWidth,
-        cecRailMountThickness,
+        cecRailMountThickness + thickExt,
         halfOf(cecH9prm - cecH10) +
         cecRailMountHoleMinOffset -
-        halfOf(cecClearance)];
+        halfOf(cecClearance) + zExt];
 
     holeOffsets = [-HPUnit + xOffset, xOffset,
         HPUnit + xOffset];
@@ -93,7 +96,8 @@ module cecRailMount(xOffset=0)
         cube(railMountSize);
         for(offset = holeOffsets)
         rotate([90,0,0])
-        cecMounbtHole(offset);
+        cecMounbtHole(xOffset=offset, yOffset=yOffset,
+            zOffset=zOffset, thickExt=thickExt);
     }
 
     echo("Mount at X.Y,Z=", railMountPlacement, 
